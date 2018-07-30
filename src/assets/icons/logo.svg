@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="217mm"
+   height="87mm"
+   viewBox="0 0 217 87"
+   version="1.1"
+   id="svg3727"
+   inkscape:version="0.92.3 (3ce5693, 2018-03-11)"
+   sodipodi:docname="logo.svg">
+  <defs
+     id="defs3721" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.70911897"
+     inkscape:cx="396.85039"
+     inkscape:cy="109.99565"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:pagecheckerboard="true"
+     showborder="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1007"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid3904" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata3724">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-210)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:50.79999924px;line-height:1.25;font-family:'Painter PERSONAL USE ONLY';-inkscape-font-specification:'Painter PERSONAL USE ONLY Bold';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="46.869045"
+       y="33.92857"
+       id="text3857"><tspan
+         sodipodi:role="line"
+         id="tspan3855"
+         x="46.869045"
+         y="77.601021"
+         style="stroke-width:0.26458332" /></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:50.79999924px;line-height:1.25;font-family:'Painter PERSONAL USE ONLY';-inkscape-font-specification:'Painter PERSONAL USE ONLY Bold';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="37.041668"
+       y="64.922623"
+       id="text3861"><tspan
+         sodipodi:role="line"
+         id="tspan3859"
+         x="37.041668"
+         y="108.59507"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Painter PERSONAL USE ONLY';-inkscape-font-specification:'Painter PERSONAL USE ONLY Bold';stroke-width:0.26458332" /></text>
+    <g
+       id="g3917"
+       transform="translate(-3.0596644,204.59852)">
+      <g
+         id="g3908">
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:50.79999924px;line-height:1.25;font-family:Lovelo;-inkscape-font-specification:'Lovelo Bold';letter-spacing:0px;word-spacing:0px;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           x="-0.75595146"
+           y="42.999996"
+           id="text3879"><tspan
+             sodipodi:role="line"
+             id="tspan3877"
+             x="-0.75595146"
+             y="42.999996"
+             style="fill:#e6e6e6;stroke-width:0.26458332">ritish</tspan></text>
+      </g>
+      <text
+         id="text3883"
+         y="91.380951"
+         x="78.619057"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:50.79999924px;line-height:1.25;font-family:Lovelo;-inkscape-font-specification:'Lovelo Bold';letter-spacing:0px;word-spacing:0px;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="fill:#e6e6e6;stroke-width:0.26458332"
+           y="91.380951"
+           x="78.619057"
+           id="tspan3881"
+           sodipodi:role="line">Karki</tspan></text>
+      <rect
+         style="fill:#e6e6e6;stroke-width:0.30925637"
+         y="40.354164"
+         x="82.820999"
+         height="20.788691"
+         width="3.3800001"
+         id="rect3887" />
+      <rect
+         style="fill:#e6e6e6;stroke-width:0.30925637"
+         y="40.013988"
+         x="89.638"
+         height="20.788691"
+         width="3.3800004"
+         id="rect3887-7" />
+    </g>
+  </g>
+</svg>
