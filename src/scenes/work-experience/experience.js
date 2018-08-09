@@ -1,15 +1,40 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchExperience } from '../../actions/index';
 import styled from 'styled-components';
 
 class Experience extends Component{
+    constructor(props){
+        super(props);
+        this.props.fetchExperience();
+    }
+    componentDidUpdate(){
+        console.log(this.props.experienceData);
+    }
     render(){
         return(
             <Wrapper>
-                <h1> Experience Component </h1>
+                <div className="left-content-wrapper left-content-wrapper-small">
+                    <h1> Experience Component </h1>
+                </div>
+                <div className="right-content-wrapper right-content-wrapper-big">
+                    rightcontent
+                </div>
             </Wrapper>
         );
     }
 }
+
+function mapStateToProps(state){
+    return { experienceData: state.experienceData}
+}
+
+function mapDispatchToProps(dispatch){
+    return bindActionCreators( { fetchExperience }, dispatch);
+}
+
+export default connect( mapStateToProps, mapDispatchToProps)(Experience);
 
 const Wrapper = styled.div`
     width:100%;
@@ -23,5 +48,3 @@ const Wrapper = styled.div`
     top:0;
     z-index:2;
 `;
-
-export default Experience;

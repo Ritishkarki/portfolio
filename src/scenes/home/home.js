@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators} from 'redux';
+import { fetchHomeData } from '../../actions/index';
 import styled from 'styled-components';
-import logo from '../../assets/icons/logo.svg';
 import coverPhoto from '../../assets/projects.jpg';
+import Logo from '../../components/shared/logo';
 import { NavLink } from 'react-router-dom';
 import {Loader} from '../../components/loader';
 import Loadable from 'react-loadable';
 let time = new TimelineLite();//eslint-disable-line
 
 const ContactDetails= Loadable({
-    loader:() => import('../../components/contact-details' /* webpackChunkName: "ContactDetails" */),
+    loader:() => import('../../components/shared/contact-details' /* webpackChunkName: "ContactDetails" */),
     loading:() => Loader()
 });
 
@@ -23,18 +26,22 @@ class Home extends Component{
         this.state = {
             texts : ["Single Page App Development ?", "Custom Wordpress Development ?", "Any Frontend Works ?"],
         }
+        this.props.fetchHomeData();
     }
 
     animationFinish(){
         console.log('finished');
     }
 
-    componentDidMount(){
+    componentWillMount(){
         this.shouldType = true;
+    }
+
+    componentDidMount(){
         time.from ("#logo", 1, {opacity:0, width:0})
             .from("#HomeContact", 1, {opacity: 0}, "+=.15")
             .addLabel('contents')
-            .from("#HomePortrait", 1, {width:0, boxShadow:0}, "contents")
+            .from("#HomePortrait", 1, {width:0, boxShadow:0, height:0}, "contents")
             .from("#HomeContents", 1, {opacity:0, height:0, zIndex:3}, "contents+=.25")
             .from("#TypeWriter", 1, {opacity:0}, "contents += 1");
     }
@@ -46,43 +53,56 @@ class Home extends Component{
     render(){
         return(
             <Wrapper>
-                <div className="left-content-wrapper">
-                    <img id="logo" src={logo} alt="Ritish Karki" />
-                    <div id="HomeContact"><ContactDetails ref={node =>{this.HomeContact = node}} /></div>
-                </div>
-                <div className="right-content-wrapper">
-                    <div id="HomePortrait" className="portrait"></div>
-                    <div id="TypeWriter" className="typewriter-wrapper">
-                            <Typewriter speed={100} tag="p" texts={this.state.texts} randomSpeed={false} />
+                {this.shouldType &&
+                    <React.Fragment>
+                        <div className="left-content-wrapper">
+                            <Logo id = "logo" />
+                            <div id="HomeContact"><ContactDetails ref={node =>{this.HomeContact = node}} /></div>
                         </div>
-                    <div id="HomeContents" className="contents">
-                        <h2> Hello :) , I'm </h2>
-                        <h1 className="uppercase">Ritish <span className="theme-color">Karki</span></h1>
-                        <span className="position grey-color">Software Engineer at <a href="http://younginnovations.com.np">Younginnovations Pvt.Ltd</a></span>
-                        <p className="description">I am a huge fan of Javascript and frontend development as a whole, I have been doing it for 2.5 Years now. I mainly work with <b>React-Redux</b>, <b>D3</b>, <b>Axios</b> and <b>ES6</b> these days. Please feel free to contact me if you have an Idea or a project in mind.</p>
-                        <div className="cta">
-                            <NavLink exact to="/projects" activeClassName="active" className="animated-gradient button button-round uppercase"> Portfolio </NavLink>
-                            <NavLink exact to="/experience" activeClassName="active" className="button button-round uppercase"> Resume </NavLink>
+                        <div className="right-content-wrapper">
+                            <div id="HomePortrait" className="portrait" />
+                            <div id="TypeWriter" className="typewriter-wrapper">
+                                    <Typewriter speed={100} tag="p" texts={this.state.texts} randomSpeed={false} />
+                                </div>
+                            <div id="HomeContents" className="contents">
+                                <h2> Hello :) , I'm </h2>
+                                <h1 className="uppercase">Ritish <span className="theme-color">Karki</span></h1>
+                                <span className="position grey-color">Software Engineer at <a href="http://younginnovations.com.np">Younginnovations Pvt.Ltd</a></span>
+                                { this.props.homeDatas.homeData ? <div className="description" dangerouslySetInnerHTML={{__html: (this.props.homeDatas.homeData.content.rendered || '')}} /> : <p className="description">... loading</p> }
+                                <div className="cta">
+                                    <NavLink exact to="/projects" activeClassName="active" className="animated-gradient button button-round uppercase"> Portfolio </NavLink>
+                                    <NavLink exact to="/experience" activeClassName="active" className="button button-round uppercase"> Resume </NavLink>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    </React.Fragment>
+                }
             </Wrapper>
         );
     }
 }
 
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ fetchHomeData }, dispatch);
+}
+
+function mapStateToProps(state) {
+    return { homeDatas : state.homeDatas }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
+
 const Wrapper = styled.div`
     width:100%;
     height:100vh;
-    background:violet;
     display:flex;
     justify-content:center;
     align-items:center;
     position:absolute;
+    overflow:hidden;
     left:0;
     top:0;
     z-index:2;
-    
     .left-content-wrapper{
       padding: 5vh;
     }
@@ -187,5 +207,3 @@ const Wrapper = styled.div`
 `
 
 ;
-
-export default Home;

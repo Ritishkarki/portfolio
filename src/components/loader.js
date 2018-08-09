@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 export const Loader = () =>(
-    <Loading class="loader">
+    <Loading className="loader">
         <div></div>
         <div></div>
         <div></div>
@@ -17,6 +17,9 @@ export const Loader = () =>(
 const Loading = styled.div`
     position: relative;
 	display: grid;
+	left:50%;
+	top:50%;
+	transform:translate(-50%, 50%);
 	grid-template-columns: 33% 33% 33%;
 	grid-gap: 2px;
 	width: 100px;

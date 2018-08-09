@@ -1,39 +1,17 @@
 import React, { Component } from 'react';
-import { Router, Switch, Route, NavLink } from 'react-router-dom';
+import { Router, Route, NavLink } from 'react-router-dom';
 import matchPath from 'react-router-dom/matchPath';
 import { TransitionGroup, Transition } from 'react-transition-group';
 import createHistory from 'history/createBrowserHistory';
 import { baseStyles } from './components/global/index';
-import Loadable from 'react-loadable';
-import { Loader } from './components/loader';
 import styled from "styled-components";
 import './App.css';
-import Transitions from './components/global';
-
-const Home= Loadable({
-  loader:() => import('./scenes/home/home' /* webpackChunkName: "Home" */),
-  loading:() => Loader()
-});
-
-const Projects= Loadable({
-  loader:() => import('./scenes/projects/projects' /* webpackChunkName: "Projects" */),
-  loading:() => Loader()
-});
-
-const Experience= Loadable({
-  loader:() => import('./scenes/work-experience/experience' /* webpackChunkName: "Experience" */),
-  loading:() => Loader()
-});
-
-const Contact= Loadable({
-  loader:() => import('./scenes/contact/contact' /* webpackChunkName: "Contact" */),
-  loading:() => Loader()
-});
-
-const NoMatch= Loadable({
-  loader:() => import('./scenes/404/index' /* webpackChunkName: "404-page" */),
-  loading:() => Loader()
-});
+import { handleEnterAnimation, handleExitAnimation } from './utilities/animation';
+import Home from './scenes/home/home';
+import Projects from './scenes/projects/projects';
+import Experience from './scenes/work-experience/experience';
+import Contact from './scenes/contact/contact';
+import NoMatch from './scenes/404/index';
 
 const routes = [
   {
@@ -76,7 +54,7 @@ const routes = [
     description: 'Contact Details',
     exact: false
   },
-]
+];
 
 const filterRoutes = (location) => {
   return routes.filter(({ path, strict, exact }) => {
@@ -86,15 +64,59 @@ const filterRoutes = (location) => {
       exact
     })
   })
-}
+};
 
 class App extends Component {
   constructor(props){
     super(props);
-    this.state={
-      activeIndex:1
-    }
+    this.renderComponents = this.renderComponents.bind(this);
   }
+
+  renderComponents(location){
+      const path = `/${location.pathname.split('/')[1]}`;
+      if (!filterRoutes(location).length) {
+        return(
+            <TransitionGroup appear>
+                <Transition
+                    key="404"
+                    timeout={0}
+                    onEnter={() => console.log('notFound enter')}
+                    onEntering={() => console.log('notFound entering')}
+                    onEntered={() => console.log('notFound entered')}
+                    onExit={() => console.log('notFound exit')}
+                    onExiting={() => console.log('notFound exiting')}
+                    onExited={() => console.log('notFound exited')}
+                >
+                    <NoMatch location={location} />
+                </Transition>
+            </TransitionGroup>
+        )
+
+      }else{
+        return(
+            <TransitionGroup appear>
+                {filterRoutes(location).map(({key, ...props}) => (
+                    <Transition
+                        key={'child-' + key}
+                        timeout={2000}
+                        onEnter={handleEnterAnimation}
+                        // onEntering={() => }
+                        // onEntered={() => console.log(`entered ${key}`)}
+                        onExit={handleExitAnimation}
+                        // onExiting={() => console.log(`exiting ${key}`)}
+                        // onExited={() => console.log(`exited ${key}`)}
+                    >
+                        {React.createElement(routes.find(r => r.path === path ).component, {
+                            ...props,
+                            location,
+                        }, null)}
+                    </Transition>
+                ))}
+            </TransitionGroup>
+        );
+      }
+  }
+
   render() {
     //importing the base css for the whole project
     baseStyles();
@@ -111,14 +133,9 @@ class App extends Component {
                   })
                 }
               </Navbar>
-              <Transitions pageKey={location.key} {...location.state} >
-                <Switch location={location}>
-                  <Route exact path="/" render={(props) => <Home {...props} index={1} />} />
-                  <Route exact path="/projects" render={(props) => <Projects {...props} index={2} />} />
-                  <Route exact path="/experience" render={(props) => <Experience {...props} index={3} />}/>
-                  <Route exact path="/contact" render={(props) => <Contact {...props} index={4} />} />
-                </Switch>
-              </Transitions>
+              {
+                  this.renderComponents(location)
+              }
             </Perspective>
           )}
         />

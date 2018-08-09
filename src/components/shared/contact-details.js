@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import facebook from '../assets/icons/facebook.svg';
-import linkedin from '../assets/icons/linkedin.svg';
-import insta from '../assets/icons/instagram.svg';
-import github from '../assets/icons/github.svg';
+import facebook from '../../assets/icons/facebook.svg';
+import linkedin from '../../assets/icons/linkedin.svg';
+import insta from '../../assets/icons/instagram.svg';
+import github from '../../assets/icons/github.svg';
 
 const ContactDetails = () => (
     <Wrapper>
@@ -39,6 +39,7 @@ const Wrapper=styled.div`
             color:#e6e6e6;
             display:block;
             margin-top:10px;
+            text-decoration:none;
         }
     }
     .social{

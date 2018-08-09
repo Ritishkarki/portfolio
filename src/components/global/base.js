@@ -245,8 +245,12 @@ h6 { font-size: 1rem; }
     flex-direction:column;
     justify-content:space-between;
     background:#4b21ff;
+    padding: 5vh;
     #logo{
-      width:40%;
+      width:190px;
+    }
+    &-small{
+      width:20%;
     }
   }
   .right-content-wrapper{
@@ -256,6 +260,9 @@ h6 { font-size: 1rem; }
     height:100%;
     background:#ecf0f1;
     padding:15px;
+    &-big{
+      width:80%;
+    }
   }
 `;
 
