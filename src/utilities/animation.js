@@ -6,7 +6,6 @@ const handleComplete = target => Tl.set(target, {
 });
 
 export const handleEnterAnimation = (node) => {
-    console.log(node);
     if (!node) return;
     // Cancel existing animations
 

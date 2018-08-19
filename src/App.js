@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Router, Route, NavLink } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
 import matchPath from 'react-router-dom/matchPath';
 import { TransitionGroup, Transition } from 'react-transition-group';
 import createHistory from 'history/createBrowserHistory';
@@ -12,6 +12,7 @@ import Projects from './scenes/projects/projects';
 import Experience from './scenes/work-experience/experience';
 import Contact from './scenes/contact/contact';
 import NoMatch from './scenes/404/index';
+import NavBar from './components/shared/navbar';
 
 const routes = [
   {
@@ -125,14 +126,7 @@ class App extends Component {
       <Router history={history} >
         <Route render={ ({ location }) =>(
             <Perspective>
-              <Navbar>
-                {routes.map(({ showInMenu, path, key }) => {
-                  return showInMenu && (
-                      <Link to={path} key={`link-${key}`}><span data-tooltip={key} data-tooltip-conf="left"><span className="icon"/></span></Link>
-                    )
-                  })
-                }
-              </Navbar>
+              <NavBar routes={routes} />
               {
                   this.renderComponents(location)
               }
@@ -144,12 +138,6 @@ class App extends Component {
   }
 }
 
-const Link = props => (
-  <li>
-    <NavLink exact activeClassName="active"  {...props}  />
-  </li>
-);
-
 
 const Perspective = styled.div`
   width: 100%;
@@ -157,49 +145,6 @@ const Perspective = styled.div`
   perspective: 100vw;
   overflow-X:hidden;
   position:relative;
-`;
-
-const Navbar = styled.ul`
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right:15px;
-  height: auto;
-  width: auto;
-  display: flex;
-  flex-direction: column;
-  align-items:flex-end;
-  list-style:none;
-  text-align: right;
-  z-index:999999;
-
-  li{
-    a{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      height:20px;
-      width:20px;
-      border-radius:50%;
-      margin: 5px 0;
-      background:rgba(0, 0, 0, .2);
-      transition: all 300ms ease-in;
-      .icon{
-        height:20px;
-        width:20px;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        transition: all 300ms ease-in;
-      }
-      &:hover, &.active{
-        background:rgba(21, 101, 234, .8);
-        transition: all 300ms ease-in;
-      }
-    }
-  }
 `;
 
 export default App;

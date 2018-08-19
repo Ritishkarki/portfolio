@@ -1,29 +1,36 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
-import Logo from '../../components/shared/logo';
-import ContactDetails from '../../components/shared/contact-details';
-import { fetchProjects } from '../../actions/index';
+import Page from '../../components/shared/page';
+import { fetchProjects } from '../../actions';
+import ProjectCard from './project-cards';
 import styled from 'styled-components';
 
 class Projects extends Component{
     constructor(props){
         super(props);
+        this.state={
+            projects: []
+        }
         this.props.fetchProjects();
         this.renderProjects = this.renderProjects.bind(this);
     }
 
-    componentDidUpdate(prevState, prevProps){
-        console.log(this.props.projectsData);
+    componentDidUpdate(prevProps){
+        if(this.props.projectsData.fetching !== prevProps.projectsData.fetching && this.props.projectsData.fetching === false){
+            if(this.props.projectsData.projectsData && this.props.projectsData.projectsData.length > 0){
+                this.setState({projects: this.props.projectsData.projectsData})
+            }else{
+                this.setState({projects:[]})
+            }
+        }
     }
 
     renderProjects(){
-        if(this.props.projectsData.length){
-            return this.props.projectsData.map(project =>{
+        if(this.state.projects.length > 0){
+            return this.state.projects.map((project, index) =>{
                return(
-                   <div>
-                       <h2>{project.title.rendered}</h2>
-                   </div>
+                   <ProjectCard key = {index} project={project} />
                );
             });
         }
@@ -31,18 +38,12 @@ class Projects extends Component{
 
     render(){
         return(
-            <Wrapper>
-                <div className="left-content-wrapper left-content-wrapper-small">
-                    <Logo />
-                    <ContactDetails/>
-                </div>
-                <div className="right-content-wrapper right-content-wrapper-big">
-                    <h1>Latest Works</h1>
-                    <ProjectsWrapper>
-                        {this.renderProjects()}
-                    </ProjectsWrapper>
-                </div>
-            </Wrapper>
+            <Page smallSideBar= {true}>
+                <h1>Latest Works</h1>
+                <ProjectsWrapper>
+                    {this.renderProjects()}
+                </ProjectsWrapper>
+            </Page>
         );
     }
 }
@@ -57,24 +58,10 @@ function mapDispatchToProps(dispatch){
 
 export default connect(mapStateToProps, mapDispatchToProps)(Projects);
 
-const Wrapper = styled.div`
-    width:100%;
-    height:100vh;
-    background:pink;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    position:absolute;
-    left:0;
-    top:0;
-    z-index:2;
-    .right-content-wrapper{
-      display:block;
-      padding: 5vh;
-    }
-`;
-
 const ProjectsWrapper = styled.div`
     width:100%;
     margin-top:5vh;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
 `;

@@ -57,6 +57,10 @@ table {
 div,p,span,h1,h2,h3,button{
   box-sizing:border-box;
 }
+// global font styles
+html{
+  font-size:16px;
+}
 h1,h2,h3,h4,h5,h6{
   font-weight:bold;
 }
@@ -126,115 +130,6 @@ h6 { font-size: 1rem; }
       100%{background-position:0% 51%}
   }
 }
-
-// tooltip styles
-[data-tooltip] {
-    position: relative;
-    &:before,
-    &:after {
-      opacity: 0;
-      position: absolute;
-      left: 50%;
-      backface-visibility: hidden;
-    }
-    
-    &:before {
-      border-style: solid;
-      border-top-width: 4px;
-      border-right-width: 4px;
-      border-left-width: 4px;
-      border-bottom-width: 0;
-      border-top-color: #333;
-      border-right-color: transparent;
-      border-bottom-color: transparent;
-      border-left-color: transparent;
-      content: '';
-      top: -2px;
-      width: 0;
-      height: 0;
-      transform: translate(-50%, calc(-50% - 6px));
-      transition: opacity .1s cubic-bezier(.73, .01, 0, 1) 0s, transform .6s cubic-bezier(.73, .01, 0, 1) 0s, -webkit-transform .6s cubic-bezier(.73, .01, 0, 1) 0s;
-      z-index: 110000;
-    }
-    
-    &:after {
-      content: attr(data-tooltip);
-      text-align: center;
-      padding: 10px;
-      font-size: 14px;
-      border-radius: 8px;
-      color: white;
-      transition: opacity .3s cubic-bezier(.73, .01, 0, 1), transform .3s cubic-bezier(.73, .01, 0, 1), -webkit-transform .3s cubic-bezier(.73, .01, 0, 1);
-      pointer-events: none;
-      z-index: 999;
-      white-space: nowrap;
-      bottom: 100%;
-      transform: translate(-50%, 12px);
-      max-width: 320px;
-      text-overflow: ellipsis;
-      overflow: hidden;
-       background: #333;
-    }
-  
-    &:focus,&:hover {
-      &:before, &:after {
-        opacity: 1;
-      }
-      &:before {
-        transition: opacity .1s cubic-bezier(.73, .01, 0, 1) .1s, transform .6s cubic-bezier(.73, .01, 0, 1) .1s, -webkit-transform .6s cubic-bezier(.73, .01, 0, 1) .1s;
-        transform: translate(-50%, calc(-50% - 2px));
-      }
-      &:after {
-        transform: translate(-50%, -6px);
-      }
-    }
-    
-    &[data-tooltip-conf*=left]{
-        &:before{
-            border-style: solid;
-            border-top-color: transparent;
-            border-right-color: transparent;
-            border-bottom-color: transparent;
-            border-left-color: #333;
-            border-top-width: 4px;
-            border-bottom-width: 4px;
-            border-left-width: 4px;
-            border-right-width: 0;
-            left: -2px;
-            top: 50%;
-            width: 0;
-            height: 0;
-            -webkit-transform: translate(calc(-50% - 8px), -50%);
-            transform: translate(calc(-50% - 8px), -50%);
-        }
-        
-        &:after{
-            top: 50%;
-            right: 100%;
-            bottom: auto;
-            left: auto;
-            -webkit-transform: translate(12px, -50%);
-            transform: translate(12px, -50%);
-        }
-        
-        &:focus, &:hover{
-            &:before{
-                -webkit-transform: translate(calc(-50% - 3px), -50%);
-                transform: translate(calc(-50% - 3px), -50%);
-            }
-            &:after{
-                -webkit-transform: translate(-7px, -50%);
-                transform: translate(-7px, -50%);
-            }
-        }
-    }
-    
-    &[data-tooltip='']{
-        &:after, &:before {
-          display: none
-        }
-    }
-  }
 
   // layout for the app
   .left-content-wrapper{

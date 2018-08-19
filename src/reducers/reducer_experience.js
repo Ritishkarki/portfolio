@@ -1,4 +1,4 @@
-import { FETCH_EXPERIENCE } from '../actions/index';
+import { FETCH_EXPERIENCE } from '../actions/types';
 export default function (state={}, action) {
     switch(action.type){
         case FETCH_EXPERIENCE:
