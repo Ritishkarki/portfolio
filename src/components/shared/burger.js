@@ -9,7 +9,8 @@ const Burger = props => {
 			widthLine={props.widthLine}
 			widthIcon={props.widthIcon}
 			heightLine={props.heightLine}
-			transitionTime={props.transitionTime}
+            transitionTime={props.transitionTime}
+            className="burger-icon"
 		>
 			<a
 				title="Menu"

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
 import { fetchHomeData } from '../../actions/index';
 import styled from 'styled-components';
-import coverPhoto from '../../assets/projects.jpg';
+import coverPhoto from '../../assets/banner.jpg';
 import Page from '../../components/shared/page';
 import { NavLink } from 'react-router-dom';
 import {Loader} from '../../components/loader';
@@ -36,7 +36,6 @@ class Home extends Component{
         time.addLabel('contents')
             .from("#HomePortrait", 2, {width:0, boxShadow:0, height:0}, "contents")
             .from("#HomeContents", 1, {opacity:0, zIndex:3}, "contents+=1.5")
-            .from("#TypeWriter", 1, {opacity:0}, "contents += 2");
     }
 
     componentWillUnmount(){
@@ -46,14 +45,14 @@ class Home extends Component{
     render(){
         const { homeDatas } = this.props;
         return(
-            <Page>
+            <Page hasOverlay smallSideBar>
                 {this.shouldType &&
                     <React.Fragment>
                         <HomeContents>
                             <div id="HomePortrait" className="portrait" />
-                            <div id="TypeWriter" className="typewriter-wrapper">
+                            {/* <div id="TypeWriter" className="typewriter-wrapper">
                                 <Typewriter speed={100} tag="p" texts={this.state.texts} randomSpeed={false} />
-                            </div>
+                            </div> */}
                             <div id="HomeContents" className="contents">
                                 <h2> Hello :) , I'm </h2>
                                 <h1 className="uppercase">Ritish <span className="theme-color">Karki</span></h1>
@@ -83,12 +82,11 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
 
 const HomeContents = styled.div`
-width:70%;
 height:calc(100% - 10vh);
 display:flex;
 align-items:center;
 position:absolute;
-padding-left:20%;
+padding-left:30vw;
 .portrait{
     width: 30vw;
     -webkit-box-shadow: 0px 0px 36px 10px rgba(0,0,0,0.25);
@@ -96,13 +94,13 @@ padding-left:20%;
     box-shadow: 0px 0px 36px 10px rgba(0,0,0,0.25);
     height:90vh;
     position:absolute;
-    left:-20%;
+    left:-5vh;
     top:50%;
     transform:translateY(-50%);
     z-index:3;
-    border-radius:5px;
-    background: url(${coverPhoto});
+    background: #ecf0f1 url(${coverPhoto});
     background-size:cover;
+    background-repeat:no-repeat;
     background-position:center;
 }
 .typewriter-wrapper{

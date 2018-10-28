@@ -7,12 +7,34 @@ import { baseStyles } from './components/global/index';
 import styled from "styled-components";
 import './App.css';
 import { handleEnterAnimation, handleExitAnimation } from './utilities/animation';
-import Home from './scenes/home/home';
-import Projects from './scenes/projects/projects';
-import Experience from './scenes/work-experience/experience';
-import Contact from './scenes/contact/contact';
-import NoMatch from './scenes/404/index';
+import {Loader} from "./components/loader";
+import Loadable from 'react-loadable';
 import NavBar from './components/shared/navbar';
+
+const Home = Loadable({
+  loader: () =>import("./scenes/home/home" /* webpackChunkName: "Home" */),
+  loading: () => Loader()
+});
+const Projects = Loadable({
+  loader: () =>import("./scenes/projects/projects" /* webpackChunkName: "Projects" */),
+  loading: () => Loader()
+});
+const ProjectDetail = Loadable({
+  loader: () =>import("./scenes/projects/project-detail" /* webpackChunkName: "ProjectDetail" */),
+  loading: () => Loader()
+});
+const Experience = Loadable({
+  loader: () =>import("./scenes/work-experience/experience" /* webpackChunkName: "Experience" */),
+  loading: () => Loader()
+});
+const Contact = Loadable({
+  loader: () =>import("./scenes/contact/contact" /* webpackChunkName: "Contact" */),
+  loading: () => Loader()
+});
+const NoMatch = Loadable({
+  loader: () =>import("./scenes/404/index" /* webpackChunkName: "Nomatch" */),
+  loading: () => Loader()
+});
 
 const routes = [
   {
@@ -34,6 +56,14 @@ const routes = [
     title: 'Ritish Karki | Projects in Years',
     description: 'List of projects done by ritish karki',
     exact: true
+  },
+  {
+    component: ProjectDetail,
+    showInMenu:false,
+    key:'project-detail',
+    path:'/project/:id',
+    id:'project-detail',
+    exact:true
   },
   {
     component: Experience,
@@ -71,10 +101,15 @@ class App extends Component {
   constructor(props){
     super(props);
     this.renderComponents = this.renderComponents.bind(this);
+    Home.preload()
+    Projects.preload()
+    ProjectDetail.preload()
+    Contact.preload()
+    NoMatch.preload()
+    Experience.preload()
   }
-
   renderComponents(location){
-      const path = `/${location.pathname.split('/')[1]}`;
+      const path = filterRoutes(location)[0].path
       if (!filterRoutes(location).length) {
         return(
             <TransitionGroup appear>

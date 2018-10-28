@@ -5,6 +5,7 @@ import Page from '../../components/shared/page';
 import { fetchProjects } from '../../actions';
 import ProjectCard from './project-cards';
 import styled from 'styled-components';
+import {Loader} from '../../components/loader';
 
 class Projects extends Component{
     constructor(props){
@@ -17,12 +18,11 @@ class Projects extends Component{
     }
 
     componentDidUpdate(prevProps){
-        if(this.props.projectsData.fetching !== prevProps.projectsData.fetching && this.props.projectsData.fetching === false){
-            if(this.props.projectsData.projectsData && this.props.projectsData.projectsData.length > 0){
-                this.setState({projects: this.props.projectsData.projectsData})
-            }else{
-                this.setState({projects:[]})
-            }
+        const {fetching, projects } = this.props.projectsData
+        if(!fetching && projects !== prevProps.projectsData.projects && projects.length > 0){
+            this.setState({
+                projects
+            })
         }
     }
 
@@ -30,15 +30,18 @@ class Projects extends Component{
         if(this.state.projects.length > 0){
             return this.state.projects.map((project, index) =>{
                return(
-                   <ProjectCard key = {index} project={project} />
+                   <ProjectCard key = {index} projectNo ={index} project={project} />
                );
             });
+        }else{
+            return Loader();
         }
     }
 
     render(){
+        const {fetching, projectsData } = this.props.projectsData
         return(
-            <Page smallSideBar= {true}>
+            <Page smallSideBar noSidebar>
                 <h1>Latest Works</h1>
                 <ProjectsWrapper>
                     {this.renderProjects()}
@@ -64,4 +67,10 @@ const ProjectsWrapper = styled.div`
     display:flex;
     flex-wrap:wrap;
     justify-content:space-between;
+    > a{
+        position:fixed;
+        top:50%;
+        left:0;
+        transform:rotate(270deg) translateY(-50%);
+    }
 `;

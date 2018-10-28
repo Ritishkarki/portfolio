@@ -54,6 +54,10 @@ const Navbar = styled.div`
         height:400px;
         background: #1565ea;
     }
+    .burger-icon{
+        margin-top:5vh;
+        margin-right:5vh;
+    }
     ul{
         width:200px;
         display:block;

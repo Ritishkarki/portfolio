@@ -30,7 +30,7 @@ const Loading = styled.div`
 		display: inline-block;
 		width: 100%;
 		height: 100%;
-		background: tomato;
+		background: #4b21ff;
 		transform: scale(0.0);
 		transform-origin: center center;
 		animation: loader 2s infinite linear;

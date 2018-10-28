@@ -4,7 +4,7 @@ import Page from '../../components/shared/page';
 class Contact extends Component{
     render(){
         return(
-           <Page>
+           <Page hasOverlay smallSidebar>
                <h1>contact Component</h1>
            </Page>
         );

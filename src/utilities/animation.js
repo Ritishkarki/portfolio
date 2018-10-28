@@ -77,3 +77,11 @@ export const handleExitAnimation = (node) => {
         // onComplete: () => console.log('Page exit complete.'),
     });
 };
+
+export const handleProjectDetailEnter = (node) => {
+    console.log(node)
+};
+
+export const handleProjectDetailExit = (node) => {
+    console.log(node)
+};

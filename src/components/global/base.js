@@ -130,35 +130,6 @@ h6 { font-size: 1rem; }
       100%{background-position:0% 51%}
   }
 }
-
-  // layout for the app
-  .left-content-wrapper{
-    width:30%;
-    height:100%;
-    padding:30px;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-    background:#4b21ff;
-    padding: 5vh;
-    #logo{
-      width:190px;
-    }
-    &-small{
-      width:20%;
-    }
-  }
-  .right-content-wrapper{
-    display:flex;
-    align-items:center;
-    width:70%;
-    height:100%;
-    background:#ecf0f1;
-    padding:15px;
-    &-big{
-      width:80%;
-    }
-  }
 `;
 
 export default base;
