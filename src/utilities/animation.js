@@ -1,5 +1,7 @@
 const Tl = TweenLite; // eslint-disable-line
 const Tm = TweenMax; // eslint-disable-line
+const windowHeight = window.innerHeight;
+const windowWidth = window.innerWidth;
 
 const handleComplete = target => Tl.set(target, {
     clearProps: 'position, width, height, borderRadius, transform',
@@ -79,9 +81,39 @@ export const handleExitAnimation = (node) => {
 };
 
 export const handleProjectDetailEnter = (node) => {
-    console.log(node)
+    if (!node) return;
+    const { parentNode } = node;
+    console.log(node, parentNode)
+
+    Tm.killTweensOf(node);
+
+    // Set element parent  position
+    Tl.set(parentNode, {//eslint-disable-line
+        position:'fixed',
+        zIndex:1000
+    });
+
+    // Set element  position
+    Tl.set(node, {//eslint-disable-line
+       borderRadius: '50%',
+       opacity:0,
+       autoAlpha: 0
+    });
+
+    // Set element  position
+    Tl.to(node, .5, {//eslint-disable-line
+        force3D: true,
+        borderRadius:0,
+        opacity:1,
+        autoAlpha: 1,
+        height:windowHeight,
+        width:windowWidth,
+        top:0,
+        left:0
+     });
 };
 
 export const handleProjectDetailExit = (node) => {
+    if (!node) return;
     console.log(node)
 };

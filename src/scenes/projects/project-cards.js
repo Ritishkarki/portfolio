@@ -33,7 +33,12 @@ export default class ProjectCard extends Component{
     render(){
         const { project, projectNo } = this.props;
         const {top, left, width, height} = this.state.coOrdinates;
-
+        const style ={
+            width:`${width}px`,
+            height:`${height}px`,
+            top:`${top}px`,
+            left:`${left}px`
+        }
         return(
             <React.Fragment>
                 <Project ref={this.projectRef} backgroundImage ={project.featured_image_src_small} >
@@ -60,13 +65,11 @@ export default class ProjectCard extends Component{
                             onEnter={handleProjectDetailEnter}
                             onEntering={() => console.log('notFound entering')}
                             onEntered={() => console.log('notFound entered')}
-                            onExit={handleProjectDetailEnter(top, left, width, height)}
+                            onExit={handleProjectDetailExit}
                             onExiting={() => console.log('notFound exiting')}
                             onExited={() => console.log('notFound exited')}
                         >
-                            <ProjectDetail width={width} height={height} top={top} left={left}>
-                                
-                            </ProjectDetail>
+                            <ProjectDetail projectDetails={project} style={style} />
                         </Transition>
                     </TransitionGroup>
                 }
