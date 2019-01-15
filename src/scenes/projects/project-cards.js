@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import { TransitionGroup, Transition } from 'react-transition-group';
 import { handleProjectDetailEnter, handleProjectDetailExit } from '../../utilities/animation';
+import ProjectDetail from './project-detail';
 
 
 export default class ProjectCard extends Component{
@@ -87,12 +88,6 @@ const Tag = styled.span`
     margin-right:10px;
     border-radius:5px;
 `;
-
-const ProjectDetail = styled.div`
-    position:fixed;
-    background:#303030;
-    z-index:2000;
-`
 
 const Project = styled.div`
     width:calc(33.3333% - 30px);
